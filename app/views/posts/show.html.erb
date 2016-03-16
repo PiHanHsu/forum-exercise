@@ -1,5 +1,21 @@
-<h1> SHOW <h1>
+
 <P> Title: <%= @post.title %>
 <p> Content: <%= @post.content %>
-	
+
+<ul>
+<%= @post.comments.each do |comment| %>
+<li><%= comment.content %>
+<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger" %>
+</li>
+<% end %>
+</ul>
+
+<%= form_for @comment, :url => post_comments_path(@post) do |f| %>
+	<%= f.label :content, "Comment" %><br>
+	<%= f.text_field :content, :class => "form-control", :placeholder => "Input comment" %><br>
+
+<%= f.submit "Comment", :class => "btn btn-primary" %>
+<%end%>
+
+<br>
 <p><%= link_to 'Back to index', posts_path %></p>

@@ -5,8 +5,11 @@ class PostsController < ApplicationController
 		@posts = Post.page(params[:page]).per(5).order(id: :asc)
 	end
 
-    def show
-    end
+  def show
+    @comments = @post.comments
+    @comment = Comment.new
+
+  end
 
 	def new
     @post = Post.new
