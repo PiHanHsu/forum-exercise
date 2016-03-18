@@ -1,7 +1,11 @@
 
 <P> Title: <%= @post.title %>
 <p> Content: <%= @post.content %>
-
+<p> Category:
+	<% @post.categories.each do |c| %>
+		<%= c.name %>
+	<% end %>
+</p>
 <ul>
 <% @post.comments.each do |comment| %>
 	<li>

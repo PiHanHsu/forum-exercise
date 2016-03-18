@@ -19,7 +19,7 @@ class PostsController < ApplicationController
  	def create
     @post = Post.new(post_params)
     @post.user = current_user
-    
+
     if @post.save
     flash[:notice] = "新增成功！！"
     last_page = Post.all.count / 5
@@ -66,7 +66,7 @@ def set_post
   end
 
   def post_params
-  	params.require(:post).permit(:title, :content, :user_id, :status)
+  	params.require(:post).permit(:title, :content, :user_id, :status, :category_ids => [] )
   end
 
 
