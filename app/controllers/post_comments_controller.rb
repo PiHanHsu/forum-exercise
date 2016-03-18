@@ -12,10 +12,11 @@ before_action :set_post, :only => [:show, :create, :edit, :update, :destroy]
  	def create
  		
  	@comment = @post.comments.build(comment_params)
+  @comment.user = current_user
 
-      @comment.save
-    	flash[:notice] = "新增成功！！"
-        redirect_to post_path(@post)
+  @comment.save
+  flash[:notice] = "新增成功！！"
+  redirect_to post_path(@post)
       
 
  	end

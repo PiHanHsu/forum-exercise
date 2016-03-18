@@ -5,8 +5,9 @@
 <ul>
 <% @post.comments.each do |comment| %>
 	<li>
-		<p><%= comment.content %></p>
-		<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger" %>
+		<%= comment.content %>
+		<%= comment.try(:user).try(:username) %>
+		<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger btn-xs" %>
 	</li>
 <% end %>
 </ul>

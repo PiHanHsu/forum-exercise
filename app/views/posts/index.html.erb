@@ -22,7 +22,7 @@
        <%= post.title %>
     </td>
     <td>
-       <%= post.try(:user).username %>
+       <%= post.try(:user).try(:username) %>
     </td> 
     <td>
       <%= link_to 'Show', post_path(post), :class => "btn btn-primary" %>
