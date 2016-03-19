@@ -3,7 +3,20 @@ class PostsController < ApplicationController
   before_action :set_post, :only => [:show, :edit, :update, :destroy]
 
 	def index
-		@posts = Post.page(params[:page]).per(5).order(id: :asc)
+    if params[:keyword]
+
+      @posts = Post.where( [ "title like ?", "%#{params[:keyword]}%" ] )
+    else
+      @posts = Post.all
+    end
+
+    if params[:order]
+      sort_by = (params[:order] == 'title') ? 'title' : 'id'
+      @posts = @posts.order(sort_by)
+    end
+		  
+      @posts = @posts.page(params[:page]).per(5).order(id: :asc)
+      
 	end
 
   def show
