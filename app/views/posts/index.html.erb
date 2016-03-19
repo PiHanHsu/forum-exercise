@@ -9,6 +9,11 @@
 <% end %>
 <div><br>
 
+<div>
+  <% @categories.each do |category| %>
+  <%= link_to category.name, posts_path( :category => category) %>
+  <% end %>
+</div>
 
 <table class = "table table-striped table-bordered ">
   <thead class = "thead">
