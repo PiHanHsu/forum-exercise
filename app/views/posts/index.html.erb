@@ -23,8 +23,11 @@
     <th>
        <%= "User"%>
     </th>
-     <th>
-       <%= "Comments #{}"%>
+    <th>
+      <%= "Comments #{}"%>
+    </th>
+    <th>
+      <%= "Views"%>
     </th>
     <th>
        <%= "Action"%>
@@ -41,8 +44,10 @@
     </td> 
     <td>
        <%= post.comments.count %>
-
     </td> 
+    <td>
+       <%= post.views %>
+    </td>
 
     <td>
       <%= link_to 'Show', post_path(post), :class => "btn btn-primary" %>

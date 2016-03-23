@@ -28,7 +28,15 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @comment = Comment.new
-
+    
+    if @post.views
+      @post.views = @post.views + 1
+    else
+      @post.views = 1
+    end
+    
+    @post.save
+    
   end
 
 	def new

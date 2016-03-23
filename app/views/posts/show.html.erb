@@ -1,6 +1,7 @@
 
 <P> Title: <%= @post.title %>
 <p> Content: <%= @post.content %>
+<p> Views: <%= @post.views%>
 <p> Category:
 	<% @post.categories.each do |c| %>
 		<%= c.name %>
