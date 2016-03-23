@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     end
 		  
     if params[:category]
-      @posts = Category.find(params[:category]).post
+      @posts = Category.find(params[:category]).posts
     end
     
       @posts = @posts.page(params[:page]).per(5).order(id: :asc)
