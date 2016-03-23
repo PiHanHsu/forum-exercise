@@ -37,10 +37,11 @@
        <%= post.title %>
     </td>
     <td>
-       <%= post.try(:user).try(:username) %>
+       <%= post.user.username %>
     </td> 
     <td>
-       <%= post.try(:comments).try(:count) %>
+       <%= post.comments.count %>
+
     </td> 
 
     <td>
