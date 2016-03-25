@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
+  def admin?
+	self.role == "admin"
+  end
 end
