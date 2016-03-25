@@ -24,7 +24,7 @@
             <%= link_to('登入', new_session_path(:user)) %>
         <% end %>
         <%= yield %>
-        <%= link_to "admin", admin_posts_path if current_user && current_user.admin? %>
+        
       </div>
     </div>
   </div>

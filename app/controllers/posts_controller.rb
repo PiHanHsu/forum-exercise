@@ -87,6 +87,17 @@ class PostsController < ApplicationController
       redirect_to posts_path(:page => display_page) 		
  	end
 
+  def dashboard
+    @users = User.all
+    @posts = Post.all
+    @comments = Comment.all
+    
+  end
+
+  def profile
+    @posts = current_user.posts.page(params[:page]).per(5).order(id: :asc)
+  end
+
 private
 def set_post
 
