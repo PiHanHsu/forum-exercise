@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160324121016) do
     t.string   "status"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "views"
+    t.integer  "views",          default: 0
     t.integer  "comments_count", default: 0
   end
 
