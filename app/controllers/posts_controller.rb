@@ -6,19 +6,21 @@ class PostsController < ApplicationController
     @categories = Category.all
 
     if params[:keyword]
-
+      # Post.select_by_keyword(paramsp[:keyword])
       @posts = Post.where( [ "title like ?", "%#{params[:keyword]}%" ] )
     else
       @posts = Post.all
     end
 
     if params[:order]
+      # Post.order_byx()
       sort_by = (params[:order] == 'title') ? 'title' : 'id'
       @posts = @posts.order(sort_by)
     end
 		  
     if params[:category]
-      @posts = Category.find(params[:category]).posts
+      @category = Category.find(params[:category])
+      @posts = @category.posts
     end
     
       @posts = @posts.page(params[:page]).per(5).order(id: :asc)
