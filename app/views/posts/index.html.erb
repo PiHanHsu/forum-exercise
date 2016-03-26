@@ -1,16 +1,15 @@
- <div >
+<div class = "row">
+  <div class="col-sm-12 text-center">
      <h1> Posts List </h1>
   </div>
+</div>
 
-<div>
+<div class ="form-group">
 <%= form_tag posts_path, :method => :get do %>
   <%= text_field_tag "keyword" %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
 <% end %>
-<div><br>
-<%= link_to 'Profile', profile_posts_path %><br>
-<%= link_to 'About', dashboard_posts_path %><br>
-
+</div>
 
 <div>
   <% @categories.each do |category| %>
@@ -73,4 +72,3 @@
 <%= paginate @posts %>
 </div> 
 
-<%= link_to "admin", admin_posts_path if current_user && current_user.admin? %>

@@ -7,22 +7,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class = "container">
-    <div class = "row">
-      <div class = "col-md-12">
-        <% if flash[:notice].present? %>
+  <nav class = "navbar navbar-default">
+    <div class="container">
+      <% if flash[:notice].present? %>
         <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
         <%end%>
         <% if flash[:alert].present? %>
         <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
         <%end%>
-        <% if current_user %>
+        <div class ="navbar-header navbar-brand">
+          <% if current_user %>
+            Welcome <%= current_user.username %> !
             <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-            <%= link_to('修改密碼', edit_registration_path(:user)) %>
-        <% else %>
+            <%= link_to('修改個人資訊', edit_registration_path(:user)) %> |
+          <% else %>
             <%= link_to('註冊', new_registration_path(:user)) %> |
-            <%= link_to('登入', new_session_path(:user)) %>
-        <% end %>
+            <%= link_to('登入', new_session_path(:user)) %> |
+          <% end %>
+          <%= link_to '關於本站', dashboard_posts_path %> |
+          <%= link_to "管理者頁面", admin_posts_path if current_user && current_user.admin? %>
+        </div>
+        
+        <div class ="navbar-right">
+           
+        </div>
+    </div>
+  </nav>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-12">
+        
+      <div class = "col-sm-6 pull-left">
+         
+      </div>
+      <div class = "col-sm-6 pull-right">
+     
+      </div>
         <%= yield %>
         
       </div>
