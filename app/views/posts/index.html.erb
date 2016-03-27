@@ -32,6 +32,10 @@
       <%= "Views"%>
     </th>
     <th>
+      <%= "最近回覆時間"%>
+    </th>
+
+    <th>
        <%= "Action"%>
     </th>
   </thead>
@@ -50,7 +54,9 @@
     <td>
        <%= post.views %>
     </td>
-
+     <td>
+       <%= post.updated_at %>
+    </td>
     <td>
       <%= link_to 'Show', post_path(post), :class => "btn btn-primary" %>
       <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-default" if post.user == current_user %>
@@ -63,7 +69,9 @@
 </table>
 
 <%= link_to 'Sort by Name', posts_path( :order => "title") %>
-<%= link_to 'Sort by Default', posts_path %>
+<%= link_to 'Sort by Comment time', posts_path( :order => "updated_at") %>
+<%= link_to 'Sort by Comment count', posts_path( :order => "comments_count") %>
+
 
 <div>
 <%= link_to 'Add New Post', new_post_path, :class => "btn btn-primary" %>

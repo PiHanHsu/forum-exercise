@@ -12,18 +12,25 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
 
-    if params[:order]
+    
       # Post.order_byx()
-      sort_by = (params[:order] == 'title') ? 'title' : 'id'
-      @posts = @posts.order(sort_by)
+    case params[:order]
+      when "title"
+        @posts = @posts.order(title: :asc)
+      when "comments_count"
+        @posts = @posts.order(comments_count: :desc)
+      when "updated_at"
+        @posts = @posts.order(updated_at: :desc)
+      else
+        @posts = @posts.order(:id)
     end
-		  
+
     if params[:category]
       @category = Category.find(params[:category])
       @posts = @category.posts
     end
     
-      @posts = @posts.page(params[:page]).per(5).order(id: :asc)
+      @posts = @posts.page(params[:page]).per(5)
       
 	end
 
