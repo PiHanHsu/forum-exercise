@@ -21,6 +21,8 @@ class PostsController < ApplicationController
         @posts = @posts.order(comments_count: :desc)
       when "updated_at"
         @posts = @posts.order(updated_at: :desc)
+      when "views"
+        @posts = @posts.order(views: :desc)
       else
         @posts = @posts.order(:id)
     end
@@ -70,7 +72,8 @@ class PostsController < ApplicationController
  	end
 
  	def edit
-    
+    #current_user only can edit his/her own post
+    @post = current_user.posts.find(params[:id])
 
  	end
 
