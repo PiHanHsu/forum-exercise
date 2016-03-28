@@ -24,6 +24,7 @@ gem "paperclip", "~> 4.3"
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "kaminari"
+gem 'bootstrap-kaminari-views'
 
 # for auth
 gem 'devise'
