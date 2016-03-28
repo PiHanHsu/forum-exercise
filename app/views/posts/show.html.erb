@@ -7,6 +7,13 @@
 		<%= c.name %>
 	<% end %>
 </p>
+
+<% if @post.user.avatar.exists? %>
+<%= image_tag @post.user.avatar.url(:thumb) %>
+<% else %>
+No image!!
+<% end %>
+
 <ul>
 <% @post.comments.each do |comment| %>
 	<li>
@@ -16,8 +23,6 @@
 	</li>
 <% end %>
 </ul>
-
-<!-- another way to do it <%= form_for [@post, @comment] do |f| %> -->
 
 <%= form_for @comment, :url => post_comments_path(@post) do |f| %>
 	<%= f.label :content, "Comment" %><br>
