@@ -23,6 +23,7 @@
           <% else %>
             <%= link_to('註冊', new_registration_path(:user)) %> |
             <%= link_to('登入', new_session_path(:user)) %> |
+            <%= link_to "Facebook登入", user_omniauth_authorize_path(:facebook) %> |
           <% end %>
           <%= link_to '關於本站', dashboard_posts_path %> |
           <%= link_to "管理者頁面", admin_posts_path if current_user && current_user.admin? %>

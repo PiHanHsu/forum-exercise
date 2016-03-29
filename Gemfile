@@ -28,6 +28,10 @@ gem 'bootstrap-kaminari-views'
 
 # for auth
 gem 'devise'
+gem 'omniauth-facebook'
+
+#HTTP Client
+gem 'rest-client'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
