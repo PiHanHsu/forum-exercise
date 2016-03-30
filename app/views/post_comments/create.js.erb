@@ -1,0 +1,12 @@
+
+<% if @comment.valid? %>
+
+  $("#comments-list").prepend("<%=j render( :partial => "comment", :locals => { :comment => @comment }  ) %>");
+  $("#new_comment").trigger('reset');
+  alert("add!!");
+
+<% else %>
+
+  alert("新增失敗!!!");
+  
+<% end %>

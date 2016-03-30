@@ -1,0 +1,5 @@
+<li id = "comment-<%= comment.id%>">
+		<%= comment.content %>
+		<%= comment.user.username %>
+		<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger btn-xs", :remote => "ture" %>
+</li>

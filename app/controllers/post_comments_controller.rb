@@ -16,8 +16,11 @@ before_action :set_post, :only => [:show, :create, :edit, :update, :destroy]
 
   @comment.save
   flash[:notice] = "新增成功！！"
-  redirect_to post_path(@post)
-      
+
+  respond_to do |format|
+        format.html { redirect_to :back }
+        format.js # destroy.js.erb
+  end 
 
  	end
 
@@ -40,7 +43,12 @@ before_action :set_post, :only => [:show, :create, :edit, :update, :destroy]
       @comment = @post.comments.find(params[:id])
       @comment.destroy
       
-      redirect_to post_path(@post)		
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js # destroy.js.erb
+      end
+
+      #redirect_to post_path(@post)		
  	end
 
 private
