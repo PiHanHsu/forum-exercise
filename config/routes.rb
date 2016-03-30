@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, :controller => "post_comments"
+    resources :likes
     collection do
         get :dashboard
         get :profile

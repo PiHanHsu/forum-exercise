@@ -1,5 +1,13 @@
-<li id = "comment-<%= comment.id%>">
+<li id="comment-<%= comment.id%>">
 		<%= comment.content %>
 		<%= comment.user.username %>
 		<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger btn-xs", :remote => "ture" %>
+</li>
+
+<li id="comment-<%= c.id %>"><%= c.content %> by <%= c.user.try(:display_name) %>
+
+  <% if current_user && c.user == current_user %>
+    (<%= link_to "Delete", topic_comment_path(@topic, c), :method => :delete, :remote => true %>)
+  <% end %>
+
 </li>
