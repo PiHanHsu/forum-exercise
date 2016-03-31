@@ -1,0 +1,7 @@
+<% if subscription %>
+   	<%= link_to "Unsubscribe", unsubscribe_post_path(@post), :method => :post, :class => "btn btn-primary btn-sm", :remote => true %>
+<% else %>
+   	<%= link_to "Subscribe", subscribe_post_path(@post), :method => :post, :class => "btn btn-primary btn-sm", :remote => true %>
+<% end %>
+<span><%= @post.subscriptions.count %></span
+	

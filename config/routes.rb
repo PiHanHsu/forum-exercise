@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         get :dashboard
         get :profile
     end
+    member do
+      post :subscribe
+      post :unsubscribe
+    end
   end
   
   namespace :admin do

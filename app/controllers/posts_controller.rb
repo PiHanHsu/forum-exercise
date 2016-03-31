@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
-  before_action :set_post, :only => [:show, :edit, :update, :destroy]
+  before_action :set_post, :only => [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]
 
 	def index
     @categories = Category.all
@@ -106,6 +106,32 @@ class PostsController < ApplicationController
 
   def profile
     @posts = current_user.posts.page(params[:page]).per(5).order(id: :asc)
+  end
+
+  def subscribe
+    subscription = @post.find_subscription_by(current_user)
+      if subscription
+          # do nothing
+      else
+         @subscription = @post.subscriptions.create!( :user => current_user )
+      end
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+    
+  end
+
+  def unsubscribe
+    subscription = @post.find_subscription_by(current_user)
+    subscription.destroy
+    subscription = nil
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js 
+    end
   end
 
 private
