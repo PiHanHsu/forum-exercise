@@ -5,6 +5,8 @@ class Admin::PostsController < ApplicationController
 
 	def index
 		@posts = Post.all
+        @categories = Category.all
+        @category = Category.new
 	end
 
 
