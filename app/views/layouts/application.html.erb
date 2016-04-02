@@ -29,8 +29,10 @@
           <%= link_to "管理者頁面", admin_posts_path if current_user && current_user.admin? %>
         </div>
         
-        <div class ="navbar-right">
-           
+        <div class ="navbar-right navbar-brand">
+           <%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %>
+            <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
+
         </div>
     </div>
   </nav>

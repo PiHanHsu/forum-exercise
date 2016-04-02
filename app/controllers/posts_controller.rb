@@ -118,7 +118,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js 
+      format.js { render "create" }
     end
     
   end
