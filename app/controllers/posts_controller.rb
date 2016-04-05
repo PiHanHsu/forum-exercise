@@ -12,7 +12,6 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
 
-    
       # Post.order_byx()
     case params[:order]
       when "title"
@@ -24,14 +23,14 @@ class PostsController < ApplicationController
       when "views"
         @posts = @posts.order(views: :desc)
       else
-        @posts = @posts.order(:id)
+        @posts = @posts.order(id: :desc)
     end
 
     if params[:category]
       @category = Category.find(params[:category])
       @posts = @category.posts
     end
-    
+      @posts = @posts.where( :status => "published" )
       @posts = @posts.page(params[:page]).per(5)
       
 	end
@@ -64,7 +63,8 @@ class PostsController < ApplicationController
     if Post.all.count % 5 != 0
       last_page += 1
     end
-    redirect_to posts_path(:page => last_page)
+    
+    redirect_to posts_path(:page => 1)
       else
         render :action => :new
       end 

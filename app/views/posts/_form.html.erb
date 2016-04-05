@@ -8,6 +8,10 @@
 
 <h1> </h1>
 <div class="form-group form-inline">
+ 	<%= f.label :status %>
+    <%= f.select :status, post_status_options, :class => "form-control" %>
+</div>
+<div class="form-group form-inline">
 	<%= f.label :title, "Title" %><br>
 	<%= f.text_field :title, :class => "form-control", :placeholder => "Input Title" %>
 	<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>

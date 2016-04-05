@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+
+   STATUS = ["draft", "published", "scheduled"]
+   
    has_many :post_categoryships
    has_many :categories, through: :post_categoryships 
    has_many :comments

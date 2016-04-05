@@ -1,2 +1,7 @@
 "zh-TW":
   hello: "哈囉！"
+  post:
+    status:
+    draft: 這是草稿
+    published: 公開發布
+    scheduled: 預定

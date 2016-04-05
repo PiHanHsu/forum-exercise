@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  post:
+    status:
+      draft: draft
+      published: published
+      scheduled: scheduled
