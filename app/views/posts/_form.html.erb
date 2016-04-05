@@ -11,6 +11,12 @@
  	<%= f.label :status %>
     <%= f.select :status, post_status_options, :class => "form-control" %>
 </div>
+
+<div class="form-group">
+    <%= f.label :publish_on, "發布日期" %>
+    <%= f.text_field :publish_on, :required => true, :class => "form-control" %>
+  </div>
+
 <div class="form-group form-inline">
 	<%= f.label :title, "Title" %><br>
 	<%= f.text_field :title, :class => "form-control", :placeholder => "Input Title" %>
@@ -21,3 +27,10 @@
 	<%= f.label :content, "Content" %><br>
 	<%= f.text_area :content, :class => "form-control", :id => "content", :placeholder => "Input Content" %>
 </div>
+
+<script>
+    $("#post_publish_on").datepicker({
+     format: "yyyy/mm/dd"
+    });
+</script>
+
