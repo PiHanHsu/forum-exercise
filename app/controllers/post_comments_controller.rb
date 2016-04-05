@@ -11,13 +11,12 @@ before_action :set_post, :only => [:show, :create, :edit, :update, :destroy]
 
  	def create
  		
- 	@comment = @post.comments.build(comment_params)
-  @comment.user = current_user
+ 	  @comment = @post.comments.build(comment_params)
+    @comment.user = current_user
+    @comment.save
+    flash[:notice] = "新增成功！！"
 
-  @comment.save
-  flash[:notice] = "新增成功！！"
-
-  respond_to do |format|
+    respond_to do |format|
         format.html { redirect_to :back }
         format.js # destroy.js.erb
   end 

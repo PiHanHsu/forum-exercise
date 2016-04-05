@@ -1,4 +1,3 @@
-
 <% if @comment.valid? %>
 
   $("#comments-list").prepend("<%=j render( :partial => "comment", :locals => { :comment => @comment }  ) %>");
