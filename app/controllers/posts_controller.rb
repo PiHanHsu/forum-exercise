@@ -118,7 +118,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js { render "create" }
+      format.js { render "subscribe" }
     end
     
   end
@@ -130,7 +130,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js
+      format.js { render "subscribe" }
     end
   end
 
