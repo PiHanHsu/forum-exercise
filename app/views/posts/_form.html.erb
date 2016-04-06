@@ -9,13 +9,14 @@
 <h1> </h1>
 <div class="form-group form-inline">
  	<%= f.label :status %>
-    <%= f.select :status, post_status_options, :class => "form-control" %>
+  <%= f.select :status, post_status_options, :class => "form-control" %>
 </div>
 
-<div class="form-group">
+<div id="date-area" class="form-group form-inline">
     <%= f.label :publish_on, "發布日期" %>
     <%= f.text_field :publish_on, :required => true, :class => "form-control" %>
-  </div>
+</div>
+
 
 <div class="form-group form-inline">
 	<%= f.label :title, "Title" %><br>
@@ -29,8 +30,18 @@
 </div>
 
 <script>
+    $( document ).ready(function() {
+       $("#date-area").hide();
+    });
     $("#post_publish_on").datepicker({
      format: "yyyy/mm/dd"
     });
+    
+    $("#post_status").on("change", function(e){
+      if (this.value == "scheduled") {
+         $("#date-area").show();
+      }else{
+        $("#date-area").hide();
+      }
+    });
 </script>
-
