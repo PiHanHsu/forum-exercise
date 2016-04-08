@@ -7,35 +7,50 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class = "navbar navbar-default">
-    <div class="container">
-      <% if flash[:notice].present? %>
-        <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
-        <%end%>
-        <% if flash[:alert].present? %>
-        <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
-        <%end%>
-        <div class ="navbar-header navbar-brand">
-          <% if current_user %>
-            Welcome <%= current_user.username %> !
-            <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-            <%= link_to('修改個人資訊', edit_registration_path(:user)) %> |
-          <% else %>
-            <%= link_to('註冊', new_registration_path(:user)) %> |
-            <%= link_to('登入', new_session_path(:user)) %> |
-            <%= link_to "Facebook登入", user_omniauth_authorize_path(:facebook) %> |
-          <% end %>
-          <%= link_to '關於本站', dashboard_posts_path %> |
-          <%= link_to "管理者頁面", admin_posts_path if current_user && current_user.admin? %>
-        </div>
-        
-        <div class ="navbar-right navbar-brand">
-           <%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %>
-            <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
+<!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <% if flash[:notice].present? %>
+              <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+            <%end%>
+            
+            <% if flash[:alert].present? %>
+              <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+            <%end%>
+            
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <%= link_to('My ScoreBoard Fourm', posts_path, :class => "navbar-brand") %>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <% if current_user %>
+                    <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
+                    <li><%= link_to('修改個人資訊', edit_registration_path(:user)) %><li>
+                  <% else %>
+                    <li><%= link_to('註冊', new_registration_path(:user)) %></li>
+                    <li><%= link_to('登入', new_session_path(:user)) %></li>
+                    <li><%= link_to "Facebook登入", user_omniauth_authorize_path(:facebook) %></li>
+                  <% end %>
 
+                    <li>
+                        <%= link_to '關於本站', dashboard_posts_path %>
+                    </li>
+                    <li>
+                        <%= link_to "管理者頁面", admin_posts_path if current_user && current_user.admin? %>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav" id="nav-language">
+                  <li><%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %></li>
+                  <li><%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </div>
+        <!-- /.container -->
   </nav>
+
   <div class = "container">
     <div class = "row">
       <div class = "col-md-12">

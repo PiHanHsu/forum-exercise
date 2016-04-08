@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :likes
     collection do
         get :dashboard
+        get :old_home
         get :profile
     end
     member do
