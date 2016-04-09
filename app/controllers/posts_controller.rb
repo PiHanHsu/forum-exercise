@@ -38,6 +38,8 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @comment = Comment.new
+    @posts = @post.user.posts.where( :status => "published" ).page(params[:page]).per(5).order(id: :asc)
+    
     
     if @post.views
       @post.views = @post.views + 1
@@ -167,14 +169,12 @@ class PostsController < ApplicationController
 
 private
 def set_post
+  @post = Post.find(params[:id])
+end
 
-    @post = Post.find(params[:id])
-
-  end
-
-  def post_params
-  	params.require(:post).permit(:title, :content, :user_id, :status, :category_ids => [] )
-  end
+def post_params
+  params.require(:post).permit(:title, :content, :user_id, :status, :category_ids => [] )
+end
 
 
 
