@@ -24,6 +24,12 @@ Rails.application.routes.draw do
 
   resources :categories
   
+  #api 
+    scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+    resources :posts
+  end
+
+
   # You can have the root of your site routed with "root"
     root 'posts#index'
 
