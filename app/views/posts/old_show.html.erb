@@ -1,0 +1,88 @@
+
+<P> Title: <%= @post.title %>
+<p> Content: <%= @post.content %>
+<p> Views: <%= @post.views%>
+<p> Category:
+	<% @post.categories.each do |c| %>
+		<%= c.name %>
+	<% end %>
+</p>
+
+<% if @post.user.avatar.exists? %>
+<%= image_tag @post.user.avatar.url(:thumb) %>
+<% else %>
+No image!!
+<% end %>
+
+<h2>Status: <%= @post.status %></h2>
+
+<% like = @post.find_like_by(current_user) %>
+
+<div id="like-area">
+   <%= render :partial => "like", :locals => { :like => like } %>
+</div>
+
+<% subscription = @post.find_subscription_by(current_user) %>
+<div id="subscription-area">
+   <%= render :partial => "subscription", :locals => { :subscription => subscription } %>
+</div>
+
+<ul id="comments-list">
+<% @post.comments.each do |comment| %>
+	<li id="comment-<%= comment.id%>">
+		<%= comment.content %>
+		<%= comment.try(:user).try(:username) %>
+		<%= link_to 'Delete', post_comment_path(@post, comment) ,:method => :delete, :class => "btn btn-danger btn-xs", :remote => "ture" %>
+	</li>
+<% end %>
+</ul>
+
+<%= form_for @comment, :url => post_comments_path(@post), :remote => "ture" do |f| %>
+	<%= f.label :content, "Comment" %><br>
+	<%= f.text_field :content, :class => "form-control", :placeholder => "Input comment" %><br>
+
+<%= f.submit "Comment", :class => "btn btn-primary" %>
+<%end%>
+
+<br>
+<p><%= link_to 'Back to index', posts_path %></p>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=592429950915958";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" 
+		data-href="http://myscoreboardapp.com" 
+		data-layout="standard" 
+		data-action="like" 
+		data-show-faces="true">
+</div>
+<div class="fb-share-button" 
+		data-href="https://www.facebook.com/myscoreboardapp/" 
+		data-layout="button_count">
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=592429950915958";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=592429950915958";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<%#= content_tag :div, '', :class => "fb-comments", "data-href" => request.original_url, "data-numposts" => "5", "data-colorscheme" => "light" %>
+
+<div class="fb-comments" data-href="https://localhost:3000/posts/40" data-numposts="5" data-width="100%"></div> 

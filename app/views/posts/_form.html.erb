@@ -18,12 +18,12 @@
 
 <div class="form-group form-inline">
   <h4><%= f.label :status %></h4>
-  <%= f.select :status, post_status_options, {},:class => "selectpicker" %>
+  <%= f.select :status, post_status_options %>
 </div>
 
 <div id="date-area" class="form-group form-inline">
     <%= f.label :publish_on, "發布日期" %>
-    <%= f.text_field :publish_on, :required => true, :class => "form-control", :placeholder => Date.today %>
+    <%= f.text_field :publish_on, :class => "form-control", :placeholder => Date.today %>
 </div>
 
 

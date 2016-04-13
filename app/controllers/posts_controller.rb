@@ -38,6 +38,8 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @comment = Comment.new
+    @posts = @post.user.posts.where( :status => "published" ).page(params[:page]).per(5).order(id: :asc)
+    
     
     if @post.views
       @post.views = @post.views + 1
@@ -58,7 +60,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-    flash[:notice] = "新增成功！！"
+    # flash[:notice] = "新增成功！！"
     last_page = Post.all.count / 5
     if Post.all.count % 5 != 0
       last_page += 1
@@ -79,8 +81,7 @@ class PostsController < ApplicationController
 
  	def update
     if @post.update(post_params)
-      flash[:notice] = "更新成功！！"
-
+      # flash[:notice] = "更新成功！！"
       redirect_to posts_path
       else
         render :action => :edit
@@ -88,7 +89,7 @@ class PostsController < ApplicationController
  	end
 
  	def destroy
-      flash[:alert] = "刪除成功！"
+      # flash[:alert] = "刪除成功！"
       @post.destroy
       display_page = params[:page].to_i
       if Post.page(params[:page]).per(5).count == 0 && display_page > 1
@@ -102,6 +103,38 @@ class PostsController < ApplicationController
     @posts = Post.all
     @comments = Comment.all
     
+  end
+
+  def old_home # the same as index
+    @categories = Category.all
+
+    if params[:keyword]
+      # Post.select_by_keyword(paramsp[:keyword])
+      @posts = Post.where( [ "title like ?", "%#{params[:keyword]}%" ] )
+    else
+      @posts = Post.all
+    end
+
+      # Post.order_byx()
+    case params[:order]
+      when "title"
+        @posts = @posts.order(title: :asc)
+      when "comments_count"
+        @posts = @posts.order(comments_count: :desc)
+      when "updated_at"
+        @posts = @posts.order(updated_at: :desc)
+      when "views"
+        @posts = @posts.order(views: :desc)
+      else
+        @posts = @posts.order(id: :desc)
+    end
+
+    if params[:category]
+      @category = Category.find(params[:category])
+      @posts = @category.posts
+    end
+      @posts = @posts.where( :status => "published" )
+      @posts = @posts.page(params[:page]).per(5)
   end
 
   def profile
@@ -136,14 +169,12 @@ class PostsController < ApplicationController
 
 private
 def set_post
+  @post = Post.find(params[:id])
+end
 
-    @post = Post.find(params[:id])
-
-  end
-
-  def post_params
-  	params.require(:post).permit(:title, :content, :user_id, :status, :category_ids => [] )
-  end
+def post_params
+  params.require(:post).permit(:title, :content, :user_id, :status, :category_ids => [] )
+end
 
 
 
