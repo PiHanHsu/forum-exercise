@@ -14,6 +14,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+#for deploy
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+gem "mysql2"
 
 #for Heroku
 gem 'pg'
