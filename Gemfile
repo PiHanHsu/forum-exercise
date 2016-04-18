@@ -20,8 +20,8 @@ gem 'capistrano-passenger', :group => :development
 gem "mysql2"
 
 #for Heroku
-gem 'pg'
-gem 'rails_12factor', group: :production
+#gem 'pg'
+#gem 'rails_12factor', group: :production
 
 #for image upload 
 gem "paperclip", "~> 4.3"
