@@ -48,6 +48,13 @@ class PostsController < ApplicationController
     end
     
     @post.save
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => { :id => @post.id, :title => @post.title }
+      }
+    end
     
   end
 
