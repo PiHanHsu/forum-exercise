@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 /public/system
+
+/config/facebook.yml
+/config/s3.yml

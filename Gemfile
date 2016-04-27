@@ -25,6 +25,7 @@ gem "mysql2"
 
 #for image upload 
 gem "paperclip", "~> 4.3"
+gem 'aws-sdk-v1' 
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "kaminari"
