@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 	def index
     @categories = Category.all
 
+    #add this line for testing only
+
     if params[:keyword]
       # Post.select_by_keyword(paramsp[:keyword])
       @posts = Post.where( [ "title like ?", "%#{params[:keyword]}%" ] )
